@@ -1,5 +1,8 @@
 # Semver Resource
 
+[![Build Status](https://travis-ci.org/antonu17/semver-resource.svg?branch=master)](https://travis-ci.org/antonu17/semver-resource)
+[![Docker Repository on Quay](https://quay.io/repository/antonu17/semver-resource-depth/status "Docker Repository on Quay")](https://quay.io/repository/antonu17/semver-resource-depth)
+
 A resource for managing a version number. Persists the version number in one of several backing stores.
 
 
