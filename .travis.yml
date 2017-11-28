@@ -6,7 +6,12 @@ services:
 
 before_script:
   - export IMAGE="quay.io/antonu17/semver-resource-depth:latest"
+  - export HELLOFRESH_IMAGE="quay.io/hellofresh/semver-resource-depth:latest"
+
 script: 
   - travis_retry docker build . -t ${IMAGE} --build-arg SEMVER_TESTING_ACCESS_KEY_ID="${ACCESS_KEY_ID}" --build-arg SEMVER_TESTING_SECRET_ACCESS_KEY="${SECRET_ACCESS_KEY}" --build-arg SEMVER_TESTING_BUCKET="${S3_BUCKET}" --build-arg SEMVER_TESTING_REGION="${AWS_REGION}"
   - travis_retry docker login -u="${QUAY_USER}" -p="${QUAY_PASS}" quay.io
   - travis_retry docker push ${IMAGE}
+  - travis_retry docker tag ${IMAGE} ${HELLOFRESH_IMAGE}
+  - travis_retry docker login -u="${HELLOFRESH_QUAY_USER}" -p="${HELLOFRESH_QUAY_PASS}" quay.io
+  - travis_retry docker push ${HELLOFRESH_IMAGE}
